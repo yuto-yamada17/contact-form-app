@@ -10,7 +10,9 @@ class Category extends Model
     use HasFactory;
 
     //一括代入を許可
-    protected $fillable = 'content';
+    protected $fillable = [
+        'content',
+    ];
 
     //カテゴリーが持つ問い合わせ内容を取得
     public function Contact()
