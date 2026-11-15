@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Http\Controllers\ContactController;
 
 Route::middleware('auth')->group(function () {
 
@@ -26,3 +27,7 @@ Route::middleware('auth')->group(function () {
         return redirect('/login');
     });
 });
+
+// お問い合わせ入力画面
+Route::get('/', [ContactController::class, 'index'])
+    ->name('contacts.index');
