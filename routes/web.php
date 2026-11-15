@@ -47,3 +47,7 @@ Route::put('/admin/tags/{tag}', [TagController::class, 'update'])
 // タグ削除
 Route::delete('/admin/tags/{tag}', [TagController::class, 'destroy'])
     ->name('admin.tags.destroy');
+
+//お問い合わせ詳細削除
+Route::delete('/admin/contacts/{contact}', [AdminController::class, 'destroy'])
+    ->name('admin.contacts.destroy');
