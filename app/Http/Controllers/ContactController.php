@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactRequest;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
+    //お問い合わせフォーム入力画面の表示
     public function index()
     {
-
-        // カテゴリー一覧を取得
         $categories = Category::select('id', 'content')->get();
 
-        // タグ一覧を取得
         $tags = Tag::select('id', 'name')->get();
 
-        // お問い合わせ入力画面を表示
         return view('contact.index', compact(
             'categories',
             'tags'
@@ -38,5 +36,23 @@ class ContactController extends Controller
             'category',
             'tags'
         ));
+    }
+
+    // お問い合わせ内容を保存
+    public function store(StoreContactRequest $request)
+    {
+        $validated = $request->validated();
+
+        unset($validated['tag_ids']);
+
+        Contact::create($validated);
+
+        return redirect()->route('contacts.complete');
+    }
+
+    // サンクス画面の表示
+    public function complete()
+    {
+        return view('contact.thanks');
     }
 }

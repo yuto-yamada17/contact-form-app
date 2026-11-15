@@ -11,7 +11,15 @@ Route::get('/', [ContactController::class, 'index'])
 
 // 確認ページ
 Route::post('/contacts/confirm', [ContactController::class, 'confirm'])
-    ->name('contact.confirm');
+    ->name('contacts.confirm');
+
+// お問い合わせ送信処理
+Route::post('/contacts', [ContactController::class, 'store'])
+    ->name('contacts.store');
+
+// サンクス画面
+Route::get('/thanks', [ContactController::class, 'complete'])
+    ->name('contacts.complete');
 
 // 管理画面
 Route::middleware('auth')->group(function () {
