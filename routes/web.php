@@ -5,6 +5,15 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Http\Controllers\ContactController;
 
+// お問い合わせ入力画面
+Route::get('/', [ContactController::class, 'index'])
+    ->name('contacts.index');
+
+// 確認ページ
+Route::post('/contacts/confirm', [ContactController::class, 'confirm'])
+    ->name('contact.confirm');
+
+// 管理画面
 Route::middleware('auth')->group(function () {
 
     Route::get('/admin', function () {
@@ -21,13 +30,4 @@ Route::middleware('auth')->group(function () {
             'contacts'
         ));
     })->name('admin.index');
-
-    // ログアウト後のトップページ
-    Route::get('/', function () {
-        return redirect('/login');
-    });
 });
-
-// お問い合わせ入力画面
-Route::get('/', [ContactController::class, 'index'])
-    ->name('contacts.index');
