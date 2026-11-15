@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
-use App\Models\Contact;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TagController;
 
 // お問い合わせ入力画面
 Route::get('/', [ContactController::class, 'index'])
@@ -24,18 +24,26 @@ Route::get('/thanks', [ContactController::class, 'complete'])
 // 管理画面
 Route::middleware('auth')->group(function () {
 
-    Route::get('/admin', function () {
-
-        // お問い合わせ種類を取得
-        $categories = Category::all();
-
-        // お問い合わせ一覧を取得
-        $contacts = Contact::paginate(10);
-
-        // 管理画面にデータを渡す
-        return view('admin.index', compact(
-            'categories',
-            'contacts'
-        ));
-    })->name('admin.index');
+    Route::get('/admin', [AdminController::class, 'index'])
+        ->name('admin.index');
 });
+
+// お問い合わせ詳細
+Route::get('/admin/contacts/{contact}', [AdminController::class, 'show'])
+    ->name('admin.show');
+
+// タグ追加
+Route::post('/admin/tags', [TagController::class, 'store'])
+    ->name('admin.tags.store');
+
+// タグ編集画面
+Route::get('/admin/tags/{tag}/edit', [TagController::class, 'edit'])
+    ->name('admin.tags.edit');
+
+// タグ更新
+Route::put('/admin/tags/{tag}', [TagController::class, 'update'])
+    ->name('admin.tags.update');
+
+// タグ削除
+Route::delete('/admin/tags/{tag}', [TagController::class, 'destroy'])
+    ->name('admin.tags.destroy');
