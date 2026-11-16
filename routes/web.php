@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin', [AdminController::class, 'index'])
         ->name('admin.index');
+
+    // お問い合わせCSVエクスポート
+    Route::get('/contacts/export', [ContactController::class, 'export'])
+        ->name('contacts.export');
 });
 
 // お問い合わせ詳細

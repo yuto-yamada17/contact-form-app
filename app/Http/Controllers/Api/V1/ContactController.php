@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateContactRequest;
 use App\Http\Resources\Api\V1\ContactResource;
 use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ExportContactRequest;
 
 class ContactController extends Controller
 {

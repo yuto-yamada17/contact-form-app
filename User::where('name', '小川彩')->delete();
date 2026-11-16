@@ -1,0 +1,9 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#8087
+    [34mall[39m: [
+      [34;4mApp\Models\User[39;24m {#8086
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: [32m"[39m[32m小川彩[39m[32m"[39m,
+        [34memail[39m: [32m"[39m[32mogawa.aya@nogizaka.com[39m[32m"[39m,
+      },
+    ],
+  }
