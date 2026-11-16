@@ -288,4 +288,4 @@ sail artisan migrate:fresh --seed
 
 ## 8. 作成者
 
-[自分の名前]
+山田 悠人
