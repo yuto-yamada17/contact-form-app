@@ -37,12 +37,6 @@ COACHTECH お問い合わせフォーム
 
 ![ER図](docs/images/er-diagram.png)
 
-## 3. ER図
-
-今回作成したデータベースの構成を以下に示します。
-
-![ER図](docs/images/er-diagram.png)
-
 ## 4. 環境構築手順
 
 以下の手順に沿って、開発環境を構築します。
