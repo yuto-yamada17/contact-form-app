@@ -44,9 +44,14 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
+        // タグIDを取得
+        $tagIds = $validated['tag_ids'] ?? [];
+
         unset($validated['tag_ids']);
 
-        Contact::create($validated);
+        $contact = Contact::create($validated);
+
+        $contact->tags()->sync($tagIds);
 
         return redirect()->route('contacts.complete');
     }
@@ -128,6 +133,8 @@ class ContactController extends Controller
             }
 
             fclose($file);
-        }, 'contacts.csv');
+        }, 'contacts.csv', [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
     }
 }
